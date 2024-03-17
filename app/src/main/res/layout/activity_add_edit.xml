@@ -28,7 +28,7 @@
             android:text="@string/title"
             android:gravity="start|center_vertical"
             android:textSize="24sp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:textStyle="bold|italic"
             android:textColor="@color/white"/>
     </LinearLayout>

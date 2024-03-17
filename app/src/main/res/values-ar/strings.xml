@@ -12,6 +12,7 @@
     <string name="call">اتصال</string>
     <string name="message">رسالة</string>
     <string name="items">عناصر</string>
+    <string name="search">البحث ...</string>
 
     <string name="welcome">اهلا بك في تطبيق العمال</string>
 </resources>

@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">employee</string>
     <string name="title">Employee</string>
-    <string name="firstname">first name</string>
-    <string name="lastname">last name</string>
+    <string name="firstname">first name </string>
+    <string name="lastname">last name </string>
     <string name="number">number</string>
     <string name="email">email</string>
     <string name="envoyer">envoyer</string>

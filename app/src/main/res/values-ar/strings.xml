@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">العمال</string>
     <string name="title">العمال</string>
-    <string name="firstname">الاسم</string>
-    <string name="lastname">اللقب</string>
+    <string name="firstname">الاسم </string>
+    <string name="lastname">اللقب </string>
     <string name="number">الرقم</string>
     <string name="email">البريد</string>
     <string name="envoyer">ارسال</string>

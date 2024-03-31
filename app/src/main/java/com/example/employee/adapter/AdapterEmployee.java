@@ -80,7 +80,7 @@ public class AdapterEmployee extends RecyclerView.Adapter<HolderEmployee> {
             @Override
             public boolean onLongClick(View view) {
                 if(onItemLongClick!=null){
-                    onItemLongClick.OnClick(position,holder.itemView);
+                    onItemLongClick.OnClick(position);
                 }
                 return false;
             }
@@ -89,7 +89,7 @@ public class AdapterEmployee extends RecyclerView.Adapter<HolderEmployee> {
             @Override
             public void onClick(View view) {
                 if(onItemClick!=null){
-                    onItemClick.OnClick(position,holder.itemView);
+                    onItemClick.OnClick(position);
                 }
             }
         });

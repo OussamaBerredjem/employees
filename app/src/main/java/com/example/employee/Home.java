@@ -1,10 +1,13 @@
 package com.example.employee;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Region;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +33,8 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+
         admin = findViewById(R.id.admin);
         spinner = findViewById(R.id.spinner);
 
@@ -48,20 +53,32 @@ public class Home extends AppCompatActivity {
                 intent.putExtra("isAdmin",true);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
             }
         });
 
         spinner.setSelection(isLanguageArabic()?1:0);
 
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                SharedPreferences sharedPreferences = getSharedPreferences("lang", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
                 if (position == 1 && !first) {
-                    changeLanguage("ar","DZ",true);
+                    editor.putBoolean("us",false);
+                    changeLanguage(true);
+
+
                 } else if (position == 0 && !first){
-                    changeLanguage("en","US",false);
+                    editor.putBoolean("us",true);
+                    changeLanguage(false);
                     Toast.makeText(Home.this, "english", Toast.LENGTH_SHORT).show();
+
+
                 }
+                editor.commit();
+
                 first = false;
             }
 
@@ -73,13 +90,13 @@ public class Home extends AppCompatActivity {
     }
 
 
-    private void changeLanguage(String languageCode, String countryCode, boolean isArabic) {
+    private void changeLanguage(boolean isArabic) {
         Locale locale;
         if (isArabic) {
-            locale = new Locale(languageCode, countryCode);
+            locale = new Locale("ar", "DZ");
         } else {
             // Set the default locale
-            locale = Locale.getDefault();
+            locale = new Locale("en","CAM");
         }
 
         Resources resources = getResources();

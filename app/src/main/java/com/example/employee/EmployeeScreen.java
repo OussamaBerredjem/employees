@@ -11,7 +11,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -53,7 +55,7 @@ public class EmployeeScreen extends AppCompatActivity {
 
     TextView counter,title;
 
-    boolean isGrid = true,isSearchMode=false;
+    boolean isGrid,isSearchMode=false;
     ArrayList<Employee> list,choose,result;
     SQLiteHelper sqLiteHelper;
     AdapterEmployee adapterEmployee;
@@ -82,6 +84,10 @@ public class EmployeeScreen extends AppCompatActivity {
 
 
 
+        SharedPreferences sharedPreferences = getSharedPreferences("lang",MODE_PRIVATE);
+
+
+        isGrid = sharedPreferences.getBoolean("isGrid",false);
 
 
         themeSwitcher.setBackground(getDrawable(isDarkTheme(this)?R.drawable.ic_ight:R.drawable.ic_nightlight));
@@ -103,14 +109,14 @@ public class EmployeeScreen extends AppCompatActivity {
 
 
 
+        recyclerView.setLayoutManager(isGrid ? layoutManager : gridLayoutManager);
 
         recyclerView.setAdapter(adapterEmployee);
-        recyclerView.setLayoutManager(gridLayoutManager);
 
 
             adapterEmployee.SetOnItemClick(new OnItemClick() {
                 @Override
-                public void OnClick(int position,View item) {
+                public void OnClick(int position) {
                     if (!choose.isEmpty() && !choose.contains(list.get(position))){
                         choose.add(list.get(position));
                         adapterEmployee.notifyItemChanged(position);
@@ -136,7 +142,7 @@ public class EmployeeScreen extends AppCompatActivity {
             adapterEmployee.SetOnItemLongClick(new OnItemLongClick() {
                 @SuppressLint("ResourceAsColor")
                 @Override
-                public void OnClick(int position, View item) {
+                public void OnClick(int position) {
                     System.out.println("Long cilcked : "+position);
                     if(!choose.contains(list.get(position)) && choose.isEmpty()){
                         choose.add(list.get(position));
@@ -153,9 +159,13 @@ public class EmployeeScreen extends AppCompatActivity {
                 itemSwitcher.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        isGrid = !isGrid;
                         recyclerView.setLayoutManager(isGrid ? layoutManager : gridLayoutManager);
                         recyclerView.setAdapter(adapterEmployee);
-                        isGrid = !isGrid;
+
+                        SharedPreferences.Editor  editor = sharedPreferences.edit();
+                        editor.putBoolean("isGrid",isGrid);
+                        editor.commit();
                         view.setBackground(getDrawable(isGrid?R.drawable.ic_view_module:R.drawable.ic_view_list));
                     }
                 });
@@ -169,7 +179,6 @@ public class EmployeeScreen extends AppCompatActivity {
                         } else {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         }
-
 
                     }
                 });
@@ -289,7 +298,7 @@ public class EmployeeScreen extends AppCompatActivity {
     }
 
     public static boolean isDarkTheme(Context context) {
-        int currentNightMode = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        int currentNightMode = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_YES;
         boolean dark = currentNightMode == Configuration.UI_MODE_NIGHT_YES;
         System.out.println("dark : "+dark);
         return dark;
@@ -403,5 +412,19 @@ public class EmployeeScreen extends AppCompatActivity {
             adapterEmployee = new AdapterEmployee(this,result,choose);
             recyclerView.setAdapter(adapterEmployee);
         }
+
+
+
     }
+
+    @Override
+    protected void onNightModeChanged(int mode) {
+
+        super.onNightModeChanged(mode);
+
+    }
+
+
+
+
 }

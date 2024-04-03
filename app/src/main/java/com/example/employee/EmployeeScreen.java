@@ -176,6 +176,7 @@ public class EmployeeScreen extends AppCompatActivity {
 
                         if (isDarkTheme(EmployeeScreen.this)) {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
                         } else {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         }
@@ -242,7 +243,8 @@ public class EmployeeScreen extends AppCompatActivity {
                 back.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                    finish();
+
+                        finish();
                     }
                 });
 

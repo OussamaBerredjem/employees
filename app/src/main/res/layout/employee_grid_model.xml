@@ -53,6 +53,17 @@
             android:weightSum="100">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:gravity="end"
+                android:text="@string/ide"
+                android:textColor="#3F51B5"
+                android:textSize="16sp"
+                android:textStyle="bold">
+
+            </TextView>
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
@@ -83,6 +94,23 @@
             android:layout_weight="40"
             android:orientation="vertical"
             android:weightSum="100">
+
+            <TextView
+
+                android:id="@+id/idemployee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:ellipsize="end"
+                android:gravity="bottom"
+                android:text="Berredjem"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                >
+
+            </TextView>
 
             <TextView
 

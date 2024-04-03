@@ -22,7 +22,7 @@ import java.io.File;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HolderEmployee extends RecyclerView.ViewHolder {
-    TextView nom,prenom,call,message,email;
+    TextView nom,prenom,call,message,email,idemp;
     CircleImageView circleImageView;
     ImageButton edit;
     LinearLayout btn_call,btn_message,btn_email;
@@ -41,7 +41,7 @@ public class HolderEmployee extends RecyclerView.ViewHolder {
         btn_call = itemView.findViewById(R.id.btn_call);
         btn_email = itemView.findViewById(R.id.btn_email);
         btn_message = itemView.findViewById(R.id.btn_message);
-
+        idemp = itemView.findViewById(R.id.idemployee);
 
 
     }
@@ -52,6 +52,12 @@ public class HolderEmployee extends RecyclerView.ViewHolder {
         email.setText(e.getEmail());
         call.setText(e.getCall());
         message.setText(e.getMessage());
+        try {
+            idemp.setText(String.valueOf(e.getId()));
+
+        }catch (Exception eex){
+            System.out.println("error : "+eex.getMessage());
+        }
 
         File imgFile = new File(e.getProfile());
 

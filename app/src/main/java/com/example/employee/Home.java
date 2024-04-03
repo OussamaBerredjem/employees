@@ -53,7 +53,6 @@ public class Home extends AppCompatActivity {
                 intent.putExtra("isAdmin",true);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
             }
         });
 
@@ -93,10 +92,10 @@ public class Home extends AppCompatActivity {
     private void changeLanguage(boolean isArabic) {
         Locale locale;
         if (isArabic) {
-            locale = new Locale("ar", "DZ");
+            locale = new Locale("ar");
         } else {
             // Set the default locale
-            locale = new Locale("en","CAM");
+            locale = new Locale("en");
         }
 
         Resources resources = getResources();

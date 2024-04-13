@@ -287,6 +287,7 @@ public class EmployeeScreen extends AppCompatActivity {
         title.setVisibility(View.VISIBLE);
         search_edit.setVisibility(View.GONE);
         filtre_search.setVisibility(View.GONE);
+        search_edit.setText("");
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(search_edit.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
@@ -344,6 +345,7 @@ public class EmployeeScreen extends AppCompatActivity {
         RadioButton lastname = popupView.findViewById(R.id.choose_lastname);
         RadioButton number = popupView.findViewById(R.id.choose_number);
         RadioButton email = popupView.findViewById(R.id.choose_email);
+        RadioButton ide = popupView.findViewById(R.id.choose_ide);
 
         switch (filtreType){
             case 1:
@@ -357,6 +359,9 @@ public class EmployeeScreen extends AppCompatActivity {
                 break;
             case 4:
                 email.setChecked(true);
+                break;
+            case 5:
+                ide.setChecked(true);
                 break;
 
 
@@ -379,6 +384,9 @@ public class EmployeeScreen extends AppCompatActivity {
 
                         case R.id.choose_email:
                             filtreType = 4;
+                            break;
+                        case R.id.choose_ide:
+                            filtreType = 5;
                             break;
 
                     };
@@ -404,6 +412,9 @@ public class EmployeeScreen extends AppCompatActivity {
                     result.add(e);
 
                 }else if(filtreType == 4 && e.getEmail().toLowerCase().startsWith(text.toLowerCase())){
+                    result.add(e);
+
+                }else if(filtreType == 5 && String.valueOf(e.getId()).toLowerCase().startsWith(text.toLowerCase())){
                     result.add(e);
 
                 }

@@ -52,12 +52,8 @@ public class HolderEmployee extends RecyclerView.ViewHolder {
         email.setText(e.getEmail());
         call.setText(e.getCall());
         message.setText(e.getMessage());
-        try {
-            idemp.setText(String.valueOf(e.getId()));
+        idemp.setText(String.valueOf(e.getId()));
 
-        }catch (Exception eex){
-            System.out.println("error : "+eex.getMessage());
-        }
 
         File imgFile = new File(e.getProfile());
 
